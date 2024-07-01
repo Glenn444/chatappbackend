@@ -41,13 +41,7 @@ io.on("connection", async (socket) => {
         // Create a room
         socket.join(user._id.toString());
         onlineUser.add(user._id?.toString());
-      } else {
-        // Handle case when user details couldn't be retrieved
-        console.log("Error: User details not found");
       }
-    } else {
-      // Handle case when token is not provided
-      console.log("Error: Token not provided");
     }
     io.emit("onlineUser", Array.from(onlineUser));
 
