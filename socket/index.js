@@ -49,14 +49,6 @@ io.on("connection", async (socket) => {
       // Handle case when token is not provided
       console.log("Error: Token not provided");
     }
-    //current user details
-    //const user = await getUserDetailsFromToken(token)
-
-    //create a room
-
-    //socket.join(user?._id.toString())
-    //onlineUser.add(user?._id?.toString())
-
     io.emit("onlineUser", Array.from(onlineUser));
 
     socket.on("message-page", async (userId) => {
