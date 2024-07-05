@@ -47,13 +47,11 @@ io.on("connection", async (socket) => {
 
     socket.on("message-page", async (userId) => {
       //console.log('userId',userId)
-      const userDetails = await UserModel.findById(userId).select("-password");
+      const userDetails = await UserModel.findById(userId)
 
       const payload = {
         _id: userDetails?._id,
         name: userDetails?.name,
-        email: userDetails?.email,
-        profile_pic: userDetails?.profile_pic,
         online: onlineUser.has(userId),
       };
       socket.emit("message-user", payload);
