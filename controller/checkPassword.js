@@ -2,17 +2,16 @@ const UserModel = require("../models/UserModel")
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-async function checkPassword(request,response){
+async function Login(request,response){
     try {
-        const { password, userId } = request.body
+        const {  userId } = request.body
 
         const user = await UserModel.findById(userId);
 
-        const verifyPassword = await bcryptjs.compare(password,user.password)
 
-        if(!verifyPassword){
+        if(!user){
             return response.status(400).json({
-                message : "Please check password",
+                message : "User not found",
                 error : true
             })
         }
@@ -21,13 +20,7 @@ async function checkPassword(request,response){
             id : user._id,
             email : user.email 
         }
-        const token = await jwt.sign(tokenData,process.env.JWT_SECREAT_KEY,{ expiresIn : '1d'})
-
-        // const cookieOptions = {
-        //     http : true,
-        //     secure : true
-        // }
-        //cookie('token',token,cookieOptions)
+        const token = await jwt.sign(tokenData,process.env.JWT_SECREAT_KEY,{ expiresIn : '30d'})
 
         return response.status(200).json({
             message : "Login successfully",
@@ -43,4 +36,4 @@ async function checkPassword(request,response){
     }
 }
 
-module.exports = checkPassword
+module.exports = Login

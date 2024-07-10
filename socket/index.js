@@ -30,9 +30,10 @@ const onlineUser = new Set();
 io.on("connection", async (socket) => {
     let user = undefined;
   try {
-    // console.log("connect User ", socket.id)
+   // console.log("connect User ", socket.id)
 
     const token = socket.handshake.auth.token;
+   // console.log("token", token);
     if (token) {
       // Current user details
       user = await getUserDetailsFromToken(token);
@@ -47,12 +48,17 @@ io.on("connection", async (socket) => {
 
     socket.on("message-page", async (userId) => {
       //console.log('userId',userId)
+<<<<<<< HEAD
       const userDetails = await UserModel.findById(userId)
+=======
+      const userDetails = await UserModel.findById(userId);
+>>>>>>> a829d2d (Changes)
 
       const payload = {
         _id: userDetails?._id,
         name: userDetails?.name,
         online: onlineUser.has(userId),
+        profile_pic: userDetails?.profile_pic,
       };
       socket.emit("message-user", payload);
 
@@ -170,7 +176,7 @@ io.on("connection", async (socket) => {
       }
     });
   } catch (error) {
-    console.log("Error: ",error.message);
+    console.log("Error 1: ",error.message);
   }
 });
 

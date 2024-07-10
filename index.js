@@ -5,13 +5,11 @@ const connectDB = require('./config/connectDB')
 const router = require('./routes/index')
 const cookiesParser = require('cookie-parser')
 const { app, server } = require('./socket/index')
+const notFound = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
 
 // const app = express()
-app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true,
-    exposedHeaders: ["Set-Cookie"],
-}))
+app.use(cors())
 app.use(express.json())
 app.use(cookiesParser())
 
@@ -25,9 +23,10 @@ app.get('/',(request,response)=>{
 
 //api endpoints
 app.use('/api',router)
-
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 connectDB().then(()=>{
     server.listen(PORT,()=>{
-        console.log("server running at " + PORT)
+        console.log("Server running at " + PORT)
     })
 })

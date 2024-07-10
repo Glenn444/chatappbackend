@@ -13,17 +13,18 @@ const getUserDetailsFromToken = async (token) => {
 
     const decode = await jwt.verify(token, process.env.JWT_SECREAT_KEY);
 
-    const user = await UserModel.findById(decode.id).select("-password");
-
+    const user = await UserModel.findOne({userId: decode.id});
+ 
     return user;
   } catch (error) {
     if (error.name === "TokenExpiredError") {
-      // Token has expired, handle accordingly
-      // For example, you can respond with an error message
-      res.status(401).json({ error: "Token expired" });
+      
+      throw new Error("Token Expired")
+      //res.status(401).json({ error: "Token expired" });
     } else {
-      // Other JWT verification errors, handle accordingly
-      res.status(401).json({ error: "Invalid token" });
+     
+      console.log("Error Userdetails: ", error.message);
+     // res.status(401).json({ error: "Invalid token" });
     }
   }
 };

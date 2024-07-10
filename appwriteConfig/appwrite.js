@@ -13,6 +13,24 @@ const usersAppwrite = new sdk.Users(client);
 
 
 const account = new sdk.Account(client);
+<<<<<<< HEAD
+=======
+// const listUsers = async()=>{
+//     const users = await usersAppwrite.list();
+//     console.log(users);
+
+// }
+
+// listUsers()
+// const promise = account.createEmailPasswordSession('g@gmail.com', '12345678');
+
+// promise.then(function (response) {
+//     console.log(response); // Success
+// }, function (error) {
+//     console.log(error); // Failure
+// });
+
+>>>>>>> a829d2d (Changes)
 
 
 

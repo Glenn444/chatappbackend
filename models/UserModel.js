@@ -1,10 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const userSchema =  new mongoose.Schema({
-    name : {
-        type : String,
-        required : [true, "provide name"]
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "provide name"],
     },
+<<<<<<< HEAD
 profile_pic:{
     type: String,
 }
@@ -12,7 +14,21 @@ profile_pic:{
 },{
     timestamps : true
 })
+=======
+    profile_pic: {
+      type: String,
+    },
+    userId: {
+        type: String,
+        required: [true, "provide userId"],
+    }
+  },
+  {
+    timestamps: true,
+  }
+);
+>>>>>>> a829d2d (Changes)
 
-const UserModel = mongoose.model('User',userSchema)
+const UserModel = mongoose.model("User", userSchema);
 
-module.exports = UserModel
+module.exports = UserModel;
