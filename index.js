@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(cookiesParser())
 
-const PORT = process.env.PORT || 80800
+const PORT = process.env.PORT || 8080
 
 app.get('/',(request,response)=>{
     response.json({

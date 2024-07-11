@@ -48,11 +48,7 @@ io.on("connection", async (socket) => {
 
     socket.on("message-page", async (userId) => {
       //console.log('userId',userId)
-<<<<<<< HEAD
-      const userDetails = await UserModel.findById(userId)
-=======
       const userDetails = await UserModel.findById(userId);
->>>>>>> a829d2d (Changes)
 
       const payload = {
         _id: userDetails?._id,

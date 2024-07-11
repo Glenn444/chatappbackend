@@ -6,15 +6,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "provide name"],
     },
-<<<<<<< HEAD
-profile_pic:{
-    type: String,
-}
-  
-},{
-    timestamps : true
-})
-=======
     profile_pic: {
       type: String,
     },
@@ -27,7 +18,6 @@ profile_pic:{
     timestamps: true,
   }
 );
->>>>>>> a829d2d (Changes)
 
 const UserModel = mongoose.model("User", userSchema);
 
